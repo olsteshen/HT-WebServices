@@ -1,7 +1,6 @@
 package desktop.pages;
 
 import abstractclasses.page.AbstractPage;
-import desktop.fragments.NavigationBarFragment;
 import driver.SingletonDriver;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
@@ -20,7 +19,6 @@ public class AccountPage extends AbstractPage {
     public WebElement passwordField;
     @FindBy(xpath = "//input[@id='signInSubmit']")
     public WebElement submitButton;
-    NavigationBarFragment navigationBar = new NavigationBarFragment(driver);
 
     public AccountPage(WebDriver driver) {
         super(driver);
@@ -45,7 +43,6 @@ public class AccountPage extends AbstractPage {
     }
 
     public Boolean isLoginTitleDisplayed() {
-        driver.switchTo().frame(0);
         return titleText.isDisplayed();
     }
 

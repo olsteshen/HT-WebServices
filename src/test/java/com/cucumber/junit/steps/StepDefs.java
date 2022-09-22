@@ -1,21 +1,24 @@
 package com.cucumber.junit.steps;
 
-import data.Address;
+import com.codeborne.selenide.Selenide;
 import desktop.pages.*;
 import driver.SingletonDriver;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.Transpose;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.assertj.core.api.Assertions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+
+import static com.codeborne.selenide.Selenide.*;
 
 import java.util.List;
+import java.util.Map;
 
 public class StepDefs {
-
     WebDriver driver = SingletonDriver.getInstance();
     HomePage homePageObject;
     SearchResultsPage searchResultsPageObject;
@@ -28,7 +31,6 @@ public class StepDefs {
         homePageObject = new HomePage(driver);
     }
 
-
     @Given("I open the {string}")
     public void openPage(String pageName) {
         if(pageName.equals("Initial home page")){
@@ -38,11 +40,10 @@ public class StepDefs {
 
     @When("I search for {string}")
     public void searchForTerm(String searchTerm) {
-        searchResultsPageObject = homePageObject.enterSearchTerm(searchTerm);
-      //  searchResultsPageObject = homePageObject.searchButtonClick();
+         searchResultsPageObject = homePageObject.enterSearchTerm(searchTerm);
     }
 
-    @Then("^the search results are( not|) displayed$")
+    @Then("^the search results are displayed$")
     public void pageWithSearchResultsIsPresent() {
         Assertions.assertThat(searchResultsPageObject.isSearchResultsPresent())
                 .overridingErrorMessage("Search results are not displayed")
@@ -51,7 +52,6 @@ public class StepDefs {
 
     @When("^clicks on the Sign (?:in|out) button on navigation bar$")
     public void clickSigninButton() {
-        accountPageObject = homePageObject.navBarClick();
         accountPageObject.isLoginTitleDisplayed();
     }
 
@@ -67,16 +67,13 @@ public class StepDefs {
 
     @Given("I am an anonymous customer with clear cookies")
     public void setAnonymousCustomer() {
-        driver.manage().deleteAllCookies();
+        Selenide.clearBrowserCookies();
     }
 
 
     @And("Search results contain the following products")
     public void checkSearchResultsContainsProducts(List<String> expectedBookNames) {
-       Assertions.assertThat(searchResultsPageObject.getBookTitleInResults())
-               .extracting(WebElement::getText)
-               .as("Some of the books are not shown")
-               .containsAll(expectedBookNames);
+        Assertions.assertThat($$(By.xpath("//h3[@class='title']")).contains(expectedBookNames));
     }
 
     @And("I apply the following search filters")
@@ -86,10 +83,7 @@ public class StepDefs {
 
     @Then("Search results contain only the following products")
     public void checkSearchResultsContainOnlyProducts(List<String> expectedOnlyBookNames) {
-        Assertions.assertThat(searchResultsPageObject.getBookTitleInResults())
-                .extracting(WebElement::getText)
-                .as("Search results are not as expected")
-                .containsExactlyElementsOf(expectedOnlyBookNames);
+        Assertions.assertThat($$(By.xpath("//h3[@class='title']")).containsAll(expectedOnlyBookNames));
     }
 
     @Then("I am redirected to a {string}")
@@ -103,35 +97,28 @@ public class StepDefs {
 
     @When("I click 'Add to basket' button for product with name {string}")
     public void clickATBButton(String productName) {
-        searchResultsPageObject.atbButton(productName).click();
+        searchResultsPageObject.addProductToBasket(productName);
     }
 
     @When("I click 'Checkout' button on 'Basket' page")
     public void clickCheckoutOnBasket() {
         checkoutPageObject = basketPageObject.buttonCheckoutOnBasket();
-
     }
 
     @When("I click 'Buy now' button")
     public void clickBuyButton() {
-        checkoutPageObject.buyNowButton().click();
+        checkoutPageObject.buyNowButtonclick();
     }
 
     @Then("the following validation error messages are displayed on 'Delivery Address' form:")
-//    public void checkValidationErrorMessage(List<String> expectedError) {
-//        Assertions.assertThat(checkoutPageObject.getErrorMessageAddressForm())
-//                .extracting(WebElement::getText)
-//                .as("")
-//                .containsAll(expectedError);
-//    }
-    public void checkValidationErrorMessage(DataTable expectedErrors){
+    public void checkValidationErrorMessage(List<Map<String, String>> expectedErrors){
         checkoutPageObject.checkErrorMessage(expectedErrors);
     }
 
 
     @And("Checkout order summary is as following:")
-    public void checkOrderSummary(DataTable orderSummary) {
-        checkoutPageObject.checkOrderSummary(orderSummary);
+    public void checkOrderSummary(@Transpose Map<String, String> orderDetails) {
+        checkoutPageObject.checkOrderSummary(orderDetails);
     }
 
     @And("I checkout as a new customer with email {string}")
@@ -140,17 +127,17 @@ public class StepDefs {
     }
 
     @When("I fill delivery address information manually:")
-    public void fillDeliveryAddressFields(DataTable deliveryAddress) {
+    public void fillDeliveryAddressFields(@Transpose Map<String, String> deliveryAddress) {
         checkoutPageObject.fillAddressFields(deliveryAddress);
     }
 
     @Then("the following validation error messages are displayed on 'Payment' form:")
     public void checkValidationErrorMessage(String expectedError) {
-        Assertions.assertThat(checkoutPageObject.getErrorMessagePaymentForm().getText().equals(expectedError));
+        Assertions.assertThat($(By.xpath("//div[@class='buynow-error-msg']")).getText().equals(expectedError));
     }
 
     @When("I enter my card details")
-    public void fillCardDetails(DataTable cardDetails) {
+    public void fillCardDetails(Map<String, String> cardDetails) {
         checkoutPageObject.enterCardDetails(cardDetails);
     }
 
@@ -166,6 +153,6 @@ public class StepDefs {
 
     @Then("there is no validation error messages displayed on 'Delivery Address' form")
     public void checkNoErrorInAddressForm() {
-        Assertions.assertThat(checkoutPageObject.getErrorMessageAddressForm().isEmpty());
+        Assertions.assertThat($$(By.xpath("//div[@id='deliveryAddress']//div[@class='error-block']")).isEmpty());
     }
 }

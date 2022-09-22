@@ -4,7 +4,6 @@ import driver.SingletonDriver;
 import org.junit.After;
 import org.junit.Before;
 
-
 public class DriverHooks {
     @Before
     public void setupDriver(){

@@ -1,7 +1,9 @@
 package abstractclasses.page;
 
+
+import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
+
 
 public abstract class AbstractPage {
     protected WebDriver driver;
@@ -10,15 +12,14 @@ public abstract class AbstractPage {
 
     public AbstractPage(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, this);
+    }
+
+    public String getPageUrl() {
+        return WebDriverRunner.getWebDriver().getCurrentUrl();
     }
 
     public void setPageUrl(String pageUrl) {
         this.pageUrl = pageUrl;
-    }
-
-    public String getPageUrl() {
-        return pageUrl;
     }
 
     public String setPageUrlPattern(String pageUrlPattern) {
