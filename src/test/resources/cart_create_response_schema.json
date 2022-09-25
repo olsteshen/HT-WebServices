@@ -1,0 +1,113 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string"
+    },
+    "cartType": {
+      "type": "string"
+    },
+    "code": {
+      "type": "string"
+    },
+    "entries": {
+      "type": "array",
+      "items": {}
+    },
+    "guid": {
+      "type": "string"
+    },
+    "payWithPoints": {
+      "type": "integer"
+    },
+    "pointTotalAfterOrder": {
+      "type": "integer"
+    },
+    "redeemLoyaltyPoints": {
+      "type": "integer"
+    },
+    "rewardLoyaltyPoints": {
+      "type": "integer"
+    },
+    "totalItems": {
+      "type": "integer"
+    },
+    "totalPrice": {
+      "type": "object",
+      "properties": {
+        "currencyIso": {
+          "type": "string"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "currencyIso",
+        "value"
+      ]
+    },
+    "totalPriceWithTax": {
+      "type": "object",
+      "properties": {
+        "currencyIso": {
+          "type": "string"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "currencyIso",
+        "value"
+      ]
+    },
+    "adultCustomer": {
+      "type": "boolean"
+    },
+    "checkoutBlocked": {
+      "type": "boolean"
+    },
+    "consistentAddress": {
+      "type": "boolean"
+    },
+    "containsOtcProducts": {
+      "type": "boolean"
+    },
+    "guestCheckoutAllowed": {
+      "type": "boolean"
+    },
+    "homeDeliveryOnly": {
+      "type": "boolean"
+    },
+    "paymentBlocked": {
+      "type": "boolean"
+    },
+    "placeOrderBlocked": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "type",
+    "cartType",
+    "code",
+    "entries",
+    "guid",
+    "payWithPoints",
+    "pointTotalAfterOrder",
+    "redeemLoyaltyPoints",
+    "rewardLoyaltyPoints",
+    "totalItems",
+    "totalPrice",
+    "totalPriceWithTax",
+    "adultCustomer",
+    "checkoutBlocked",
+    "consistentAddress",
+    "containsOtcProducts",
+    "guestCheckoutAllowed",
+    "homeDeliveryOnly",
+    "paymentBlocked",
+    "placeOrderBlocked"
+  ]
+}

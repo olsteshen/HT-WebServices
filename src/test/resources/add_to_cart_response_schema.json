@@ -1,0 +1,408 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "entry": {
+      "type": "object",
+      "properties": {
+        "configurationInfos": {
+          "type": "array",
+          "items": {}
+        },
+        "displayOrder": {
+          "type": "integer"
+        },
+        "entryNumber": {
+          "type": "integer"
+        },
+        "product": {
+          "type": "object",
+          "properties": {
+            "availableForPickup": {
+              "type": "boolean"
+            },
+            "baseOptions": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "selected": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "priceData": {
+                          "type": "object",
+                          "properties": {
+                            "currencyIso": {
+                              "type": "string"
+                            },
+                            "value": {
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "currencyIso",
+                            "value"
+                          ]
+                        },
+                        "stock": {
+                          "type": "object",
+                          "properties": {
+                            "stockLevel": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "stockLevel"
+                          ]
+                        },
+                        "url": {
+                          "type": "string"
+                        },
+                        "variantOptionQualifiers": {
+                          "type": "array",
+                          "items": {}
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "priceData",
+                        "stock",
+                        "url",
+                        "variantOptionQualifiers"
+                      ]
+                    },
+                    "variantType": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "selected",
+                    "variantType"
+                  ]
+                }
+              ]
+            },
+            "baseProduct": {
+              "type": "string"
+            },
+            "categories": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "name"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "name"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "name"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "name"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "name"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "name"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "name"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "name"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "name"
+                  ]
+                }
+              ]
+            },
+            "code": {
+              "type": "string"
+            },
+            "configurable": {
+              "type": "boolean"
+            },
+            "digitalProduct": {
+              "type": "boolean"
+            },
+            "displayOnly": {
+              "type": "boolean"
+            },
+            "fastlane": {
+              "type": "boolean"
+            },
+            "homeDeliveryOnly": {
+              "type": "boolean"
+            },
+            "isLoyaltyProduct": {
+              "type": "boolean"
+            },
+            "maxOrderQuantity": {
+              "type": "integer"
+            },
+            "modifaceEnabled": {
+              "type": "boolean"
+            },
+            "multibuy": {
+              "type": "boolean"
+            },
+            "name": {
+              "type": "string"
+            },
+            "pharmacy": {
+              "type": "boolean"
+            },
+            "price": {
+              "type": "object",
+              "properties": {
+                "currencyIso": {
+                  "type": "string"
+                },
+                "formattedValue": {
+                  "type": "string"
+                },
+                "oldValueLabel": {
+                  "type": "string"
+                },
+                "priceType": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "currencyIso",
+                "formattedValue",
+                "oldValueLabel",
+                "priceType",
+                "value"
+              ]
+            },
+            "productLoyaltyPoints": {
+              "type": "integer"
+            },
+            "purchasable": {
+              "type": "boolean"
+            },
+            "stock": {
+              "type": "object",
+              "properties": {
+                "stockLevel": {
+                  "type": "integer"
+                },
+                "stockLevelStatus": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "stockLevel",
+                "stockLevelStatus"
+              ]
+            },
+            "subscription": {
+              "type": "boolean"
+            },
+            "url": {
+              "type": "string"
+            },
+            "whiteLabelShopProduct": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "availableForPickup",
+            "baseOptions",
+            "baseProduct",
+            "categories",
+            "code",
+            "configurable",
+            "digitalProduct",
+            "displayOnly",
+            "fastlane",
+            "homeDeliveryOnly",
+            "isLoyaltyProduct",
+            "maxOrderQuantity",
+            "modifaceEnabled",
+            "multibuy",
+            "name",
+            "pharmacy",
+            "price",
+            "productLoyaltyPoints",
+            "purchasable",
+            "stock",
+            "subscription",
+            "url",
+            "whiteLabelShopProduct"
+          ]
+        },
+        "quantity": {
+          "type": "integer"
+        },
+        "redeemLoyaltyPoints": {
+          "type": "integer"
+        },
+        "redeemLoyaltyPointsForProduct": {
+          "type": "integer"
+        },
+        "rewardLoyaltyPoints": {
+          "type": "integer"
+        },
+        "totalPrice": {
+          "type": "object",
+          "properties": {
+            "currencyIso": {
+              "type": "string"
+            },
+            "value": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "currencyIso",
+            "value"
+          ]
+        }
+      },
+      "required": [
+        "configurationInfos",
+        "displayOrder",
+        "entryNumber",
+        "product",
+        "quantity",
+        "redeemLoyaltyPoints",
+        "redeemLoyaltyPointsForProduct",
+        "rewardLoyaltyPoints",
+        "totalPrice"
+      ]
+    },
+    "quantity": {
+      "type": "integer"
+    },
+    "quantityAdded": {
+      "type": "integer"
+    },
+    "statusCode": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "entry",
+    "quantity",
+    "quantityAdded",
+    "statusCode"
+  ]
+}
